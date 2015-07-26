@@ -83,6 +83,7 @@ public struct Turtle {
 
 extension Turtle: CustomPlaygroundQuickLookable {
     public func customPlaygroundQuickLook() -> PlaygroundQuickLook {
+        view.setNeedsDisplay()
         return PlaygroundQuickLook(reflecting: view)
     }
 
