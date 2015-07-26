@@ -62,15 +62,16 @@ public struct Turtle {
     
     // MARK: - Colors
     
-    func penColor(penColor: PenColor) {
+    mutating func penColor(penColor: PenColor) {
+        let path =  Path(penColor: penColor, isPenDown: currentPath.isPenDown, startingPoint:currentPath.currentPoint , uniqueID: currentPath.uniqueID + 1)
+        view.addPath(path)
+        currentPath = path
         if turtleType != .Plain {
-            let path =  Path(penColor: penColor, isPenDown: currentPath.isPenDown, startingPoint:currentPath.currentPoint , uniqueID: currentPath.uniqueID + 1)
-            view.addPath(path)
             turtle = Turtle(currentPath: path, view: view, avatar: avatar.penColor(penColor), turtleType: turtleType)
         }
     }
     
-    func nextColor() {
+    mutating func nextColor() {
         penColor(currentPath.penColor.next())
     }
     
